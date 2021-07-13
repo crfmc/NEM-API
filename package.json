@@ -1,0 +1,11 @@
+{
+  "name": "api_practice",
+  "version": "1.0.0",
+  "description": "Simple NodeJS, Express, MariaDB API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cesar Ferreyra-Mansilla",
+  "license": "ISC"
+}
