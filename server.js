@@ -20,6 +20,10 @@ app.get('/', (request, response) =>
     .send("Navigate to /user/:id and replace id with your user id")
 });
 
+const userRouter = require('./routes/user');
+
+app.get('/user', userRouter);
+
 // Begin listening
 app.listen(PORT, () =>
 {
