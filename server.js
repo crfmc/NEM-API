@@ -1,5 +1,8 @@
 const { urlencoded } = require('body-parser');
 const express = require('express');
+const dotenv = require('dotenv')
+
+dotenv.config({path: '.env-local'});
 
 // Use .env PORT or 3000
 PORT = process.env.PORT || '3001';

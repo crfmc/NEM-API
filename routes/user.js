@@ -1,9 +1,33 @@
+// const { response } = require('express');
 const express = require('express');
+const pool = require('../helpers/database');
 const router = express.Router();
 
-router.get('/:id', function (request, response)
+router.get('/:id', async function (request, response)
 {
-  response.status(200).json({id: request.params.id})
+  try {
+    const sqlQuery =
+      'SELECT id, name, email, password, created_at FROM users WHERE id=?';
+    const rows = await pool.query(sqlQuery, request.params.id);
+    response.status(200).json(rows);
+  } catch (error) {
+    response.status(400).send(error.message);
+  }
+  // response.status(200).json({id: request.params.id}) 
+});
+
+router.post('/register', async function (request, result)
+{
+  try
+  {
+    const { name, email, password } = request.body;
+    const sqlQuery =
+      'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
+    const res = await pool.query(sqlQuery, [name, email, password]);
+    result.status(200).json(res);
+  } catch (error) {
+    result.status(400).send(error.message);
+  }
 });
 
 module.exports = router;
