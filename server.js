@@ -22,7 +22,7 @@ app.get('/', (request, response) =>
 
 const userRouter = require('./routes/user');
 
-app.get('/user', userRouter);
+app.use('/user', userRouter);
 
 // Begin listening
 app.listen(PORT, () =>
