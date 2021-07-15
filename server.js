@@ -1,6 +1,6 @@
 const { urlencoded } = require('body-parser');
 const express = require('express');
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
 
 dotenv.config({path: '.env-local'});
 
@@ -11,7 +11,7 @@ const app = express(); // Instantiate express
 
 // Middleware
 app.use(express.json());
-app.use(urlencoded({extended: false }))
+app.use(urlencoded({ extended: false }));
 
 
 /**
@@ -20,7 +20,7 @@ app.use(urlencoded({extended: false }))
 app.get('/', (request, response) =>
 {
   response.status(200)
-    .send("Navigate to /user/:id and replace id with your user id")
+    .send("Navigate to /user/:id and replace id with your user id");
 });
 
 const userRouter = require('./routes/user');
@@ -30,5 +30,5 @@ app.use('/user', userRouter);
 // Begin listening
 app.listen(PORT, () =>
 {
-  console.log(`Listening on port ${PORT}`)
+  console.log(`Listening on port ${PORT}`);
 })

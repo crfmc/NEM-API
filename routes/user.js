@@ -1,7 +1,7 @@
-// const { response } = require('express');
 const express = require('express');
 const pool = require('../helpers/database');
 const router = express.Router();
+const bcrypt = require('bcrypt');
 
 router.get('/:id', async function (request, response)
 {
@@ -21,9 +21,10 @@ router.post('/register', async function (request, result)
   try
   {
     const { name, email, password } = request.body;
+    const encryptedPassword = await bcrypt.hash(password, 10);
     const sqlQuery =
       'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
-    const res = await pool.query(sqlQuery, [name, email, password]);
+    const res = await pool.query(sqlQuery, [name, email, encryptedPassword]);
     result.status(200).json(res);
   } catch (error) {
     result.status(400).send(error.message);
